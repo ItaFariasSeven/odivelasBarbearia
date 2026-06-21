@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-d(j$xhcope#unrn18!tg_#z58r82z*$tjbotfvdvmmj5po)(t#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['odivelas-barbearia.onrender.com', 'localhost', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://odivelas-barbearia.onrender.com']
 
 
 # Application definition
