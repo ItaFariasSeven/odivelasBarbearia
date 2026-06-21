@@ -79,7 +79,7 @@ async function gerarHorarios(dataSelecionada) {
     try {
         const barbeiroId = estadoAgendamento.barbeiroId || 1;
         
-        const resposta = await fetch(`/barbearia/api/horarios-ocupados/?data=${dataSelecionada}&barbeiro_id=${barbeiroId}`);
+        const resposta = await fetch(`/api/horarios-ocupados/?data=${dataSelecionada}&barbeiro_id=${barbeiroId}`);
         const dados = await resposta.json();
         
         const horariosOcupados = dados.ocupados || [];
@@ -178,7 +178,7 @@ function atualizarResumo() {
     }
 }
 
-function confirmarAgendamento() {
+async function confirmarAgendamento() {
     const nomeCliente = document.getElementById("nomeCliente").value.trim();
     const emailCliente = document.getElementById("email").value.trim();
 
@@ -197,7 +197,7 @@ function confirmarAgendamento() {
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
     try {
-        const resposta = await fetch('/barbearia/api/processar-agendamento/', {            
+        const resposta = await fetch('/api/processar-agendamento/', {            
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
