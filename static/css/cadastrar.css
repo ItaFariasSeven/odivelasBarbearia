@@ -1,0 +1,24 @@
+.input-padrao {
+    width: 100%;
+    background-color: #27272a;
+    padding: 8px 12px;
+    margin-top: 8px;
+    outline: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.label-padrao{
+    color: #a1a1aa;
+    font-size: 12px;
+}
+
+.aba-ativa{
+    color: #eab308;
+    border-bottom: 2px solid #eab308;
+}
+
+.aba-inativa{
+    color: #a1a1aa;
+    border-bottom: none;
+}

@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Odivelas Barbearia</title>
+
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-black via-zinc-900 to-red-950">
+    <main>
+        <div class="min-h-screen flex items-center justify-center px-4 py-6">
+
+            <div class="bg-zinc-900 max-w-xs w-full rounded-3xl shadow-2xl px-4 border border-zinc-800 py-2">
+
+                <a href="index.html" id="btnVoltar"
+                    class="text-zinc-400 text-sm inline-flex p-2 cursor-pointer hover:text-red-500 transition duration-300 items-center gap-1">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    Voltar ao início
+                </a>
+
+                <img src="./assets/images/barbeariaLogo.png" alt="Logo Odivelas Barbearia" class="w-20 mx-auto mb-1">
+
+                <h2 class="text-2xl text-white font-bold text-center tracking-wider">
+                    𝕺𝖉𝖎𝖛𝖊𝖑𝖆𝖘
+                    <ion-icon class="text-yellow-500" name="sparkles-sharp"></ion-icon>
+                </h2>
+
+                <p class="text-zinc-500 text-sm text-center mt-1">
+                    BARBEARIA PREMIUM
+                </p>
+
+                <div class="grid grid-cols-2 mt-3 border-b border-zinc-700">
+                    <div id="abaEntrar" class="aba-ativa text-center py-2 font-semibold tracking-wider cursor-pointer">
+                        Entrar
+                    </div>
+
+                    <div id="abaCadastrar"
+                        class="aba-inativa text-center py-2 font-semibold tracking-wider cursor-pointer">
+                        Cadastrar
+                    </div>
+                </div>
+
+                <form id="formLogin">
+                    <div class="mt-3">
+                        <label for="email" class="text-zinc-400 text-xs">
+                            E-MAIL
+                        </label>
+                        <input id="email" type="email" placeholder="seu@email.com" class="input-padrao">
+                    </div>
+
+                    <div>
+                        <label for="password" class="text-zinc-400 text-xs">
+                            SENHA
+                        </label>
+                        <input id="password" type="password" placeholder="*******" class="input-padrao">
+                    </div>
+
+                    <div class="flex justify-end mt-2">
+                        <a id="btnEsqueciSenha" href="#" class="text-xs text-zinc-400 hover:text-red-600 transition">
+                            Esqueci minha senha
+                        </a>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-2 rounded-lg mt-5 shadow-lg active:scale-95 tracking-wide shadow-red-900/40">
+                        Entrar
+                    </button>
+
+                    <div class="text-center mt-3">
+                        <p class="text-zinc-400 text-sm">
+                            Não possui conta?
+                            <a id="btnCadastrar" href="#"
+                                class="text-red-600 hover:text-red-500 font-semibold transition">
+                                Cadastre-se
+                            </a>
+                        </p>
+                    </div>
+                </form>
+
+                <div id="formRecuperarSenha" class="hidden">
+                    <form>
+                        <label for="emailRecuperacao" class="label-padrao">
+                            E-mail
+                        </label>
+
+                        <input id="emailRecuperacao" type="email" placeholder="Digite seu e-mail" class="input-padrao">
+
+                        <button type="submit"
+                            class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-2 rounded-lg mt-4 shadow-lg tracking-wide shadow-red-900/40">
+                            Recuperar senha
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <a id="btnVoltarLogin" href="#"
+                                class="text-zinc-400 hover:text-red-500 text-sm transition">
+                                Voltar para login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="formCadastro" class="hidden">
+                    <form>
+                        <label for="nomeCompleto" class="label-padrao">
+                            Nome Completo
+                        </label>
+                        <input id="nomeCompleto" type="text" placeholder="Digite seu nome" class="input-padrao">
+
+                        <label for="emailCadastro" class="label-padrao">
+                            E-mail
+                        </label>
+                        <input id="emailCadastro" type="email" placeholder="seu@email.com" class="input-padrao">
+
+                        <label for="senhaCadastro" class="label-padrao">
+                            Senha
+                        </label>
+                        <input id="senhaCadastro" type="password" placeholder="Digite sua senha" class="input-padrao">
+
+                        <label for="confirmarSenha" class="label-padrao">
+                            Confirmar senha
+                        </label>
+                        <input id="confirmarSenha" type="password" placeholder="Confirme sua senha"
+                            class="input-padrao">
+
+                        <button type="submit"
+                            class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-3 rounded-lg mt-5 shadow-lg tracking-wide shadow-red-900/40">
+                            Cadastrar
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/cadastrar.js' %}"></script>
+</body>
+
+</html>

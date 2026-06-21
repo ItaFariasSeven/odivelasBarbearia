@@ -1,0 +1,95 @@
+<div id="modalAvaliacao"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 px-4">
+
+    <div class="w-full max-w-md bg-zinc-950 border border-red-600 rounded-2xl shadow-2xl p-6">
+
+      <div class="flex items-center justify-between mb-6">
+
+        <div>
+
+          <h2 class="text-2xl font-extrabold uppercase text-white tracking-wider">
+            Avaliações
+          </h2>
+
+          <p class="text-zinc-400 text-sm mt-1">
+            Conte sua experiência na barbearia
+          </p>
+
+        </div>
+
+        <button onclick="fecharModal()" class="text-zinc-400 hover:text-red-500 text-3xl transition">
+          ×
+        </button>
+
+      </div>
+
+      <form class="space-y-5" action="{% url 'agendamento:salvaravaliacao' %}" onsubmit="enviarAvaliacao(event)">
+        {% csrf_token %}
+
+        <div>
+
+          <label class="block text-sm uppercase tracking-widest text-zinc-400 mb-2">
+            Nome do Cliente
+          </label>
+
+          <input id="nomeCliente" type="text" placeholder="Digite seu nome"
+            class="w-full bg-black border border-zinc-800 focus:border-red-600 focus:ring-2 focus:ring-red-600/30 outline-none text-white px-4 py-3 rounded-lg transition-all">
+
+        </div>
+
+        <div>
+
+          <label class="block text-sm uppercase tracking-widest text-zinc-400 mb-3">
+            Sua Nota
+          </label>
+
+          <div class="flex gap-2">
+
+            <button type="button" onclick="avaliar(1)" class="estrela text-4xl text-zinc-700 transition-all">
+              ★
+            </button>
+
+            <button type="button" onclick="avaliar(2)" class="estrela text-4xl text-zinc-700 transition-all">
+              ★
+            </button>
+
+            <button type="button" onclick="avaliar(3)" class="estrela text-4xl text-zinc-700 transition-all">
+              ★
+            </button>
+
+            <button type="button" onclick="avaliar(4)" class="estrela text-4xl text-zinc-700 transition-all">
+              ★
+            </button>
+
+            <button type="button" onclick="avaliar(5)" class="estrela text-4xl text-zinc-700 transition-all">
+              ★
+            </button>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <label class="block text-sm uppercase tracking-widest text-zinc-400 mb-2">
+            Comentário
+          </label>
+
+          <textarea id="comentarioCliente" rows="4" placeholder="Descreva sua experiência..."
+            class="w-full bg-black border border-zinc-800 focus:border-red-600 focus:ring-2 focus:ring-red-600/30 outline-none text-white px-4 py-3 rounded-lg resize-none transition-all"></textarea>
+
+        </div>
+
+        <button type="submit"
+          class="w-full bg-red-600 hover:bg-red-700 transition-all duration-300 text-white font-extrabold uppercase tracking-[4px] py-4 rounded-xl">
+
+          Enviar Avaliação
+
+        </button>
+
+      </form>
+
+
+    </div>
+
+  </div>
