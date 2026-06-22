@@ -19,7 +19,6 @@
   <body class="bg-gradient-to-br from-black via-zinc-900 to-red-950">
     <main>
       <div class="min-h-screen flex items-center justify-center px-4 py-6">
-        <!-- Botão de Voltar p/ Galeria -->
         <div class="bg-zinc-900 max-w-xs w-full rounded-3xl shadow-2xl px-4 border border-zinc-800 py-2">
           <a href="{% url 'agendamento:homepage'%}"id="btnVoltar"class="text-zinc-400 text-sm inline-flex p-2 cursor-pointer hover:text-red-500 transition duration-300 items-center gap-1">
             <ion-icon name="arrow-back-outline"></ion-icon>
@@ -36,84 +35,81 @@
           <p class="text-zinc-500 text-sm text-center mt-1">
             BARBEARIA PREMIUM
           </p>
-            <!-- Aba p/ Entrar -->
           <div class="grid grid-cols-2 mt-3 border-b border-zinc-700">
-            <div id="abaEntrar"class="aba-ativa text-center py-2 font-semibold tracking-wider cursor-pointer">
-              Entrar
-            </div>
-            <!-- Aba p/ Cadastrar -->
-            <div id="abaCadastrar"class="aba-inativa text-center py-2 font-semibold tracking-wider cursor-pointer">
-              Cadastrar
-            </div>
-          </div>
-            <!-- Formulario p/ Login -->
-          <form id="formLogin" method="POST">
-            {% csrf_token %}
+            <a href="{% url 'agendamento:login' %}" id="abaEntrar" class="{% if 'registrar' in request.path %}aba-inativa{% else %}aba-ativa{% endif %} text-center py-2 font-semibold tracking-wider cursor-pointer block">
+                Entrar
+            </a>
 
-            {% if form.errors and "login" in request.path %}
-                <div class="bg-red-900/50 border border-red-500 text-red-200 text-xs text-center p-2 rounded-lg mb-4">
-                    Usuário ou senha incorretos. Por favor, tente novamente.
-                </div>
-            {% endif %}
-
-            <div class="mt-3">
-              <label for="email" class="text-zinc-400 text-xs"> E-MAIL </label>
-              <input id="email" name="username" type="email"placeholder="seu@email.com"class="input-padrao"required/>
-            </div>
-
-            <div>
-              <label for="password" class="text-zinc-400 text-xs">
-                SENHA
-              </label>
-              <input id="password" name="password" type="password"placeholder="*******"class="input-padrao"required/>
-            </div>
-
-            <button id="bntEntrar" type="submit"class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-2 rounded-lg mt-5 shadow-lg active:scale-95 tracking-wide shadow-red-900/40">
-              Entrar
-            </button>
-
-            <div class="text-center mt-3">
-              <p class="text-zinc-400 text-sm">
-                Não possui conta?
-                <!-- Link p/ Cadastro -->
-                <a id="btnCadastrar"href="#"class="text-red-600 hover:text-red-500 font-semibold transition">
-                  Cadastre-se
-                </a>
-              </p>
-            </div>
-          </form>
-                <!-- Formulario p/ Cadastrar -->
-          <div id="formCadastro" class="hidden" >
-            <form method='POST' action="{% url 'agendamento:registrar' %}">
-                {% csrf_token %}
-
-                {% if form.errors %}
-                    <div class="bg-red-900/50 border border-red-500 text-red-200 text-xs p-3 rounded-lg mb-4">
-                        Esse usuário Já existe
-                    </div>
-                {% endif %}
-
-              <label for="nomeCompleto" class="label-padrao">
-                Nome Completo
-              </label>
-              <input id="nomeCompleto"name="nome_completo" type="text"placeholder="Digite seu nome"class="input-padrao"required/>
-
-              <label for="emailCadastro" class="label-padrao"> E-mail </label>
-              <input id="emailCadastro"name="email" type="email"placeholder="seu@email.com"class="input-padrao"required/>
-
-              <label for="senhaCadastro" class="label-padrao"> Senha </label>
-              <input id="senhaCadastro" name="password" type="password"placeholder="Digite sua senha"class="input-padrao"required/>
-
-              <label for="confirmarSenha" class="label-padrao">
-                Confirmar senha
-              </label>
-              <input id="confirmarSenha" type="password"placeholder="Confirme sua senha"class="input-padrao"required/>
-
-              <button type="submit"class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-3 rounded-lg mt-5 shadow-lg tracking-wide shadow-red-900/40">
+            <a href="{% url 'agendamento:registrar' %}" id="abaCadastrar" class="{% if 'registrar' in request.path %}aba-ativa{% else %}aba-inativa{% endif %} text-center py-2 font-semibold tracking-wider cursor-pointer block">
                 Cadastrar
-              </button>
-            </form>
+            </a>
           </div>
+
+      <form id="formLogin" method="POST" action="{% url 'agendamento:login' %}" class="{% if 'registrar' in request.path %}hidden{% else %}block{% endif %}">
+          {% csrf_token %}
+          
+          {% if form.errors %}
+              <div class="bg-red-900/50 border border-red-500 text-red-200 text-xs text-center p-3 rounded-lg mb-4 font-semibold">
+                  Usuário ou senha incorretos. Verifique seus dados.
+              </div>
+          {% endif %}
+          
+          <div class="mt-3">
+              <label for="email" class="text-zinc-400 text-xs">E-MAIL</label>
+              <input id="email" name="username" type="email" placeholder="seu@email.com" class="input-padrao" required>
+          </div>
+
+          <div class="mt-3">
+              <label for="password" class="text-zinc-400 text-xs">SENHA</label>
+              <input id="password" name="password" type="password" placeholder="*******" class="input-padrao" required>
+          </div>
+
+          <div class="flex justify-end mt-2">
+              <a id="btnEsqueciSenha" href="#" class="text-xs text-zinc-400 hover:text-red-600 transition">Esqueci minha senha</a>
+          </div>
+
+          <button type="submit" class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-2 rounded-lg mt-5 shadow-lg active:scale-95 tracking-wide shadow-red-900/40">
+              Entrar
+          </button>
+
+          <div class="text-center mt-3">
+              <p class="text-zinc-400 text-sm">
+                  Não possui conta? <a id="btnCadastrarLink" href="{% url 'agendamento:registrar' %}" class="text-red-600 hover:text-red-500 font-semibold transition">Cadastre-se</a>
+              </p>
+          </div>
+      </form>
+
+      <div id="formCadastro" class="{% if 'registrar' in request.path %}block{% else %}hidden{% endif %}">
+          <form method="POST" action="{% url 'agendamento:registrar' %}">
+              {% csrf_token %}
+
+              {% if form.non_field_errors %}
+                  <div class="bg-red-900/50 border border-red-500 text-red-200 text-xs p-3 rounded-lg mb-4 text-center font-semibold">
+                      {{ form.non_field_errors.0 }}
+                  </div>
+              {% elif form.errors %}
+                  <div class="bg-red-900/50 border border-red-500 text-red-200 text-xs p-3 rounded-lg mb-4 text-center">
+                      Erro no cadastro. Verifique os dados.
+                  </div>
+              {% endif %}
+
+              <label for="nomeCompleto" class="label-padrao">Nome Completo</label>
+              <input id="nomeCompleto" name="nome_completo" type="text" placeholder="Digite seu nome" class="input-padrao" required/>
+
+              <label for="emailCadastro" class="label-padrao">E-mail</label>
+              <input id="emailCadastro" name="email" type="email" placeholder="seu@email.com" class="input-padrao" required/>
+
+              <label for="senhaCadastro" class="label-padrao">Senha</label>
+              <input id="senhaCadastro" name="password" type="password" placeholder="Digite sua senha" class="input-padrao" required/>
+
+              <label for="confirmarSenha" class="label-padrao">Confirmar senha</label>
+              <input id="confirmarSenha" name="confirmarSenha" type="password" placeholder="Confirme sua senha" class="input-padrao" required/>
+
+              <button type="submit" class="w-full bg-red-700 hover:bg-red-800 transition duration-300 text-white font-semibold py-3 rounded-lg mt-5 shadow-lg tracking-wide shadow-red-900/40">
+                  Cadastrar
+              </button>
+          </form>
+      </div>
         </div>
       </div>
     </main>
