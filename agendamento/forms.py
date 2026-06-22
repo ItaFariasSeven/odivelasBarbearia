@@ -1,3 +1,5 @@
+from xml.dom import ValidationErr
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import User
 from django import forms
@@ -12,19 +14,20 @@ class FormLogin(AuthenticationForm):
         })
     )
 
-class FormCriarConta(forms.ModelForm):
-    nome_completo = forms.CharField(required=True)
+class FormCriarConta(forms.ModelForm): 
 
-    class Meta:
-        model = User
-        fields = ['email', 'password']
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        
+        if User.objects.filter(username=email).exists() or User.objects.filter(email=email).exists():
+            raise ValidationErr("Esse usuário Já existe")
+            
+        return email
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = self.cleaned_data['email']
-        user.first_name = self.cleaned_data['nome_completo']
-        user.set_password(self.cleaned_data['password'])
-        
+        user.username = self.cleaned_data['email'] 
+        user.email = self.cleaned_data['email']
         if commit:
             user.save()
         return user
