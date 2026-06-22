@@ -68,7 +68,7 @@
           <div>
             <label class="block text-sm uppercase tracking-widest text-zinc-400 mb-3">Serviço</label>
 
-            <div class="grid grid-cols-3 gap-2 mb-5">
+            {% comment %} <div class="grid grid-cols-3 gap-2 mb-5">
 
               <div class="ref-wrapper">
                 <img src="{% static 'images/degrade.jpg' %}" alt="Degradê">
@@ -100,7 +100,7 @@
                 <span class="ref-label">Sobrancelha</span>
               </div>
 
-            </div>
+            </div> {% endcomment %}
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="listaServicos">
             {% for servico in servicos %}

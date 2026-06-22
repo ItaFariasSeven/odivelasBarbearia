@@ -113,7 +113,7 @@ def processar_agendamento(request):
                 send_mail(
                     subject='Confirmação de Agendamento - Odivelas Barbearia',
                     message=f"Olá, {nome_cliente}!\n\nSeu agendamento foi confirmado:\nProfissional: {barbeiro.nome}\nServiço: {servico.nome}\nData: {dados['data']}\nHorário: {dados['horario']}\n\nTe esperamos lá!",
-                    from_email='seu-email@gmail.com', 
+                    from_email='mateusfarias134@gmail.com', 
                     recipient_list=[email_cliente],
                     fail_silently=True,
                 )
@@ -122,7 +122,7 @@ def processar_agendamento(request):
                 send_mail(
                     subject='NOVO AGENDAMENTO RECEBIDO!',
                     message=f"Olá {barbeiro.nome},\n\nVocê tem um novo cliente agendado!\n\nCliente: {nome_cliente}\nServiço: {servico.nome}\nData: {dados['data']}\nHorário: {dados['horario']}",
-                    from_email='seu-email@gmail.com',
+                    from_email='mateusfarias134@gmail.com',
                     recipient_list=[barbeiro.email],
                     fail_silently=True,
                 )
